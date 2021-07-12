@@ -1,18 +1,14 @@
-name: Test
-on: [push, pull_request]
+name: autobench tests
+on: 
+  push:
+    paths-ignore:
+      - 'README.md'
 jobs:
-  eslint:
+  style-check-and-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
       - run: npm install
       - run: npm run eslint
-
-  mocha:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-      - run: npm install
       - run: npm run test
